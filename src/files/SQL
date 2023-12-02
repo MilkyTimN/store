@@ -1,0 +1,23 @@
+CREATE TABLE tb_category (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(66)
+)
+
+CREATE TABLE tb_product (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(155),
+    category_id INTEGER REFERENCES category(id),
+)
+
+CREATE TABLE product_info (
+    id SERIAL PRIMARY KEY,
+    product_id INTEGER REFERENCES product(id),
+    brand VARCHAR(255),
+    price INTEGER,
+    description TEXT,
+    quantity INTEGER
+)
+
+INSERT INTO category (name) VALUES
+    ('Планшет','Компьютер','Ноутбук')
+
