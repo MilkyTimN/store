@@ -8,7 +8,6 @@ public class Category {
         this.id = id;
         this.name = name;
     }
-
     public Category() {
     }
 
@@ -34,6 +33,6 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" + "id=" + id + ", name='" + name + '\'' + '}';
+        return "\nCategory{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 }

@@ -1,0 +1,22 @@
+CREATE DATABASE store_db;
+
+CREATE TABLE tb_category (
+    id serial primary key,
+    name varchar
+);
+
+CREATE TABLE tb_product (
+    id serial primary key,
+    name varchar,
+    category_id int references tb_category(id)
+);
+
+CREATE TABLE tb_product_details (
+    id serial primary key,
+    product_id int references tb_product(id),
+    brand varchar,
+    price float,
+    description text,
+    quantity int
+);
+
