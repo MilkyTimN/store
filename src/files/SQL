@@ -1,0 +1,39 @@
+CREATE TABLE category_tb (
+    id SERIAL PRIMARY KEY ,
+   name VARCHAR (255)
+);
+CREATE TABLE product_tb (
+    id SERIAL primary key,
+    name VARCHAR (255),
+    category_id int
+);
+CREATE TABLE product_details (
+    id SERIAL PRIMARY KEY ,
+    product_id serial unique,
+    brand VARCHAR (255),
+    price double precision,
+    description VARCHAR (1000),
+    quantity INT
+);
+INSERT INTO category_tb (name) VALUES ('personal computer');
+INSERT INTO product_tb (name, category_id) VALUES ('keyboard', 1);
+
+INSERT INTO product_details (brand, price, description, quantity)
+VALUES
+    ('Varmilo', 7500.00, 'Механическая клавиатура с подсветкой', 50),
+    ('Logitech',950.00 , 'Беспроводная клавиатура с тихими клавишами', 30),
+    ('Keychron', 9999.00, 'Компактная Bluetooth-клавиатура для Mac', 40),
+    ('Razer', 15000.00, 'Игровая клавиатура с программируемыми клавишами', 60),
+    ('SteelSeries', 11500.00, 'Клавиатура с металлическим корпусом и RGB-подсветкой', 25),
+    ('HyperX', 3540.00, 'Клавиатура для геймеров с быстрыми механическими клавишами', 35),
+    ('Asus ROG', 19570.00, 'Профессиональная игровая клавиатура с макросами', 20);
+
+
+
+SELECT brand, count(*) FROM product_details GROUP BY brand;
+SELECT brand FROM product_details ORDER BY price DESC ;
+SELECT c.name FROM category_tb c  JOIN product_details ON product_id ORDER BY price;
+SELECT quantity, count(*)FROM product_details
+group by quantity
+ORDER BY quantity;
+
