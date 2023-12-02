@@ -1,0 +1,6 @@
+
+1. class Category -> this class responsible for an inventory of products.
+
+2. class Product -> this class contains product and name of the product.
+
+3. class ProductDetails -> this class contains details about products.
