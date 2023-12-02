@@ -44,7 +44,7 @@ public class ProductDetailsRepositoryImpl implements ProductDetailsRepository {
 
     @Override
     public ProductDetails findById(int id) {
-        String sql = "SELECT * FROM tb_product_details WHERE id = ?; ";
+        String sql = "SELECT * FROM tb_product_details WHERE id = ?;";
         try (PreparedStatement preparedStatement = dbHelper.getPreparedStatement(sql)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeQuery();
