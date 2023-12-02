@@ -9,7 +9,9 @@ public class Main {
     public static void main(String[] args) {
         CategoryService categoryService = new CategoryServiceImpl();
 
+
         categoryService.save(new Category("PC"));
+
 
     }
 }
