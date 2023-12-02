@@ -1,0 +1,25 @@
+CREATE DATABASE db_store;
+CREATE TABLE tb_category
+(
+    id   serial PRIMARY KEY,
+    name varchar
+);
+
+
+CREATE TABLE tb_product
+(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR,
+    categoryId INT REFERENCES tb_category(id)
+);
+
+CREATE TABLE tb_productdetails
+(
+id serial PRIMARY KEY ,
+productId int REFERENCES tb_product(id),
+brand varchar,
+price float,
+description varchar,
+quantity int
+
+);
