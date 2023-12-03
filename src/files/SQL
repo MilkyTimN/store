@@ -17,4 +17,5 @@ create table tb_productDetails(
     price float,
     description varchar,
     quantity int
+    Foreign Key (productId) REFERENCES tb_product(id)
 );

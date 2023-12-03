@@ -6,9 +6,14 @@ import repository.impl.ProductDetailsRepositoryImpl;
 import service.ProductDetailsService;
 
 public class ProductDetailsServiceImpl implements ProductDetailsService {
-    ProductDetailsRepository repository = new ProductDetailsRepositoryImpl();
+    private ProductDetailsRepository repository = new ProductDetailsRepositoryImpl();
     @Override
     public void save(ProductDetails productDetails) {
         repository.save(productDetails);
+    }
+
+    @Override
+    public int countOfProducts(int category) {
+        return repository.countOfProducts(category);
     }
 }
