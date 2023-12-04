@@ -10,4 +10,5 @@ public interface ProductDetailsRepository {
     void save(ProductDetails productDetails);
     List<ProductDetails> findByPriceAsc(Product product);
     List<ProductDetails> findByPriceDesc(Product product);
+    List<ProductDetails> findByBrand(Product product, String brand);
 }

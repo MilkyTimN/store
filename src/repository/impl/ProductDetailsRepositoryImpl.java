@@ -41,27 +41,28 @@ public class ProductDetailsRepositoryImpl implements ProductDetailsRepository {
         List<ProductDetails> productDetailsList = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = dbHelper.getPreparedStatement(
-                "SELECT * FROM tb_product_details pd JOIN tb_product p ON p.id = pd.product_id WHERE p.id = ? ORDER BY pd.price")) {
+                "SELECT * FROM tb_product_details pd JOIN tb_product p ON p.id = pd.product_id WHERE p.id = ? ORDER BY pd.price ASC")) {
 
             preparedStatement.setInt(1, product.getId());
 
             preparedStatement.executeQuery();
 
-            ResultSet resultSet = preparedStatement.getResultSet();
 
-            while(resultSet.next()) {
-                ProductDetails productDetails = new ProductDetails();
-                productDetails.setId(resultSet.getInt("id"));
-                productDetails.setBrand(resultSet.getString("brand"));
-                productDetails.setPrice(resultSet.getDouble("price"));
-                productDetails.setDescription(resultSet.getString("description"));
-                productDetails.setProductId(resultSet.getInt("product_id"));
-                productDetails.setQuantity(resultSet.getInt("quantity"));
 
-                productDetailsList.add(productDetails);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    ProductDetails productDetails = new ProductDetails();
+                    productDetails.setId(resultSet.getInt("id"));
+                    productDetails.setBrand(resultSet.getString("brand"));
+                    productDetails.setPrice(resultSet.getDouble("price"));
+                    productDetails.setDescription(resultSet.getString("description"));
+                    productDetails.setProductId(resultSet.getInt("product_id"));
+                    productDetails.setQuantity(resultSet.getInt("quantity"));
 
+                    productDetailsList.add(productDetails);
+
+                }
             }
-
             return productDetailsList;
 
         } catch (SQLException e) {
@@ -83,7 +84,7 @@ public class ProductDetailsRepositoryImpl implements ProductDetailsRepository {
             while (resultSet.next()) {
                 ProductDetails productDetails = new ProductDetails();
                 productDetails.setId(resultSet.getInt("id"));
-                productDetails.setProductId(resultSet.getInt("productId"));
+                productDetails.setProductId(resultSet.getInt("product_id"));
                 productDetails.setBrand(resultSet.getString("brand"));
                 productDetails.setPrice(resultSet.getDouble("price"));
                 productDetails.setDescription(resultSet.getString("description"));
@@ -97,4 +98,39 @@ public class ProductDetailsRepositoryImpl implements ProductDetailsRepository {
 
         return productDetailsList;
     }
+
+    @Override
+    public List<ProductDetails> findByBrand(Product product, String brand) {
+        List<ProductDetails> productDetailsList = new ArrayList<>();
+
+        try(PreparedStatement preparedStatement = dbHelper.getPreparedStatement(
+                "SELECT * FROM tb_product_details pd JOIN tb_product p ON p.id = pd.product_id WHERE pd.brand = ? AND p.id = ?")) {
+
+            preparedStatement.setString(1, brand);
+            preparedStatement.setInt(2, product.getId());
+
+            preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while (resultSet.next()) {
+                ProductDetails productDetails = new ProductDetails();
+
+                productDetails.setId(resultSet.getInt("id"));
+                productDetails.setProductId(resultSet.getInt("product_id"));
+                productDetails.setBrand(resultSet.getString("brand"));
+                productDetails.setPrice(resultSet.getDouble("price"));
+                productDetails.setDescription(resultSet.getString("description"));
+                productDetails.setQuantity(resultSet.getInt("quantity"));
+
+                productDetailsList.add(productDetails);
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return productDetailsList;
+    }
+
+
 }

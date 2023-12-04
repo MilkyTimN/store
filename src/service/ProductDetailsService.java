@@ -9,4 +9,6 @@ public interface ProductDetailsService {
 
     void create (ProductDetails productDetails);
     List<ProductDetails> searchByPrice(Product product, Boolean ascOrDesc);
+    List<ProductDetails> searchByBrand(Product product, String brand);
+
 }

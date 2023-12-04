@@ -28,8 +28,5 @@ public class Main {
         productDetailsService.create(keyboard1);
         productDetailsService.create(keyboard2);
 
-        boolean asc = true;
-        System.out.println(productDetailsService.searchByPrice(keyboard,asc));
-
     }
 }

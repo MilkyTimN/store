@@ -29,4 +29,12 @@ public class ProductDetailsServiceImpl implements ProductDetailsService {
         }
         return productDetailsList;
     }
+
+    @Override
+    public List<ProductDetails> searchByBrand(Product product, String brand) {
+        List<ProductDetails> productDetailsList = new ArrayList<>();
+        productDetailsList = repository.findByBrand(product ,brand);
+
+        return productDetailsList;
+    }
 }

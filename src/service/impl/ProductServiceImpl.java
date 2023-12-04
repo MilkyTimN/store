@@ -14,4 +14,13 @@ public class ProductServiceImpl implements ProductService {
         repository.save(product);
     }
 
+    @Override
+    public int getQuantity(Product product) {
+        return repository.findQuantity(product);
+    }
+
+    @Override
+    public int getQuantityAll(Product product) {
+        return repository.findQuantityAll(product);
+    }
 }
