@@ -12,7 +12,7 @@ public class ProductDetailsRepositoryImpl implements ProductDetailsRepository {
     @Override
     public void save(ProductDetails productDetails) {
         try (PreparedStatement preparedStatement = dbHelper.getPreparedStatement
-                ("INSERT INTO tb_product(productid,brand,price,description,quantity)"+
+                ("INSERT INTO tb_productdetails(productid,brand,price,description,quantity)"+
                         "VALUES(?,?,?,?,?)")) {
 
             preparedStatement.setInt(1,productDetails.getProductId());
