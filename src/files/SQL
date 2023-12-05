@@ -1,0 +1,21 @@
+CREATE TABLE tb_category(
+    id serial PRIMARY KEY,
+    name varchar(255)
+)
+
+CREATE TABLE tb_product(
+    id serial PRIMARY KEY,
+    name varchar(255),
+    categoryId int,
+    FOREIGN KEY (categoryId) REFERENCES tb_category (id)
+)
+
+CREATE TABLE tb_product_details(
+    id serial PRIMARY KEY,
+    product_id int,
+    brand varchar(255),
+    price double precision,
+    description varchar(500),
+    quantity int,
+    FOREIGN KEY (product_id) REFERENCES tb_product (id)
+)
